@@ -1,0 +1,1383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">--- START OF FILE text/html ---</p>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;BALAJI 5 — Liquidity Sniper | WebSocket Low-Latency Scalper&lt;/title&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=Rajdhani:wght@500;600;700&amp;family=Exo+2:wght@300;400;600&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">/* ===================================================================</p>
+<p class="p1"><span class="Apple-converted-space">   </span>BALAJI 5 — Design System</p>
+<p class="p1"><span class="Apple-converted-space">   </span>Preserved and extended for Liquidity Sniper Engine</p>
+<p class="p1">=================================================================== */</p>
+<p class="p1">:root{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--bg:#010306;--panel:rgba(255,140,0,0.04);--border:rgba(255,140,0,0.18);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--orange:#ff8c00;--gold:#ffd600;--green:#00ff88;--red:#ff3355;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--cyan:#00c8ff;--text:#f0e0c8;--text2:#8a7a6a;--purple:#b060ff;</p>
+<p class="p1">}</p>
+<p class="p1">*{margin:0;padding:0;box-sizing:border-box}</p>
+<p class="p1">body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;overflow-x:hidden}</p>
+<p class="p1">body::before{content:'';position:fixed;inset:0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-image:linear-gradient(rgba(255,140,0,0.025) 1px,transparent 1px),</p>
+<p class="p1"><span class="Apple-converted-space">  </span>linear-gradient(90deg,rgba(255,140,0,0.025) 1px,transparent 1px);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-size:32px 32px;pointer-events:none;z-index:0}</p>
+<p class="p1">.scanline{position:fixed;top:0;left:0;right:0;height:2px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:linear-gradient(90deg,transparent,var(--orange),transparent);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation:scan 3s linear infinite;opacity:.2;z-index:1;pointer-events:none}</p>
+<p class="p1">@keyframes scan{from{top:0}to{top:100vh}}</p>
+<p class="p1">@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}</p>
+<p class="p1">.container{position:relative;z-index:2;max-width:1140px;margin:0 auto;padding:12px}</p>
+<p class="p1">header{display:flex;align-items:center;justify-content:center;padding:8px 0 12px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-bottom:1px solid var(--border);margin-bottom:12px;flex-wrap:wrap;gap:8px}</p>
+<p class="p1">.logo{font-family:'Rajdhani';font-weight:900;font-size:1.3rem;color:var(--orange);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-shadow:0 0 22px var(--orange);letter-spacing:4px}</p>
+<p class="p1">.logo span{color:var(--gold)}.logo sup{font-size:.42rem;color:var(--cyan);letter-spacing:1px}</p>
+<p class="p1">.brand-hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 0 8px;gap:7px}</p>
+<p class="p1">.brand-hero img{height:104px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(255,184,48,0.55)) drop-shadow(0 0 34px rgba(255,120,0,0.28));user-select:none;-webkit-user-select:none;pointer-events:none}</p>
+<p class="p1">.brand-hero .brand-name{font-family:'Rajdhani';font-weight:900;font-size:1.5rem;color:var(--orange);text-shadow:0 0 22px var(--orange);letter-spacing:7px;line-height:1}</p>
+<p class="p1">.brand-hero .brand-name span{color:var(--green)}</p>
+<p class="p1">.brand-hero .brand-sub{font-family:Share Tech Mono;font-size:.5rem;color:var(--cyan);letter-spacing:3px;opacity:.85}</p>
+<p class="p1">.status-row{display:flex;gap:6px;flex-wrap:wrap}</p>
+<p class="p1">.status-pill{display:flex;align-items:center;gap:5px;background:var(--panel);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border:1px solid var(--border);padding:4px 10px;border-radius:20px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family:Share Tech Mono;font-size:.63rem;color:var(--text2)}</p>
+<p class="p1">.dot{width:7px;height:7px;border-radius:50%;background:var(--text2)}</p>
+<p class="p1">.dot.live{background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.5s infinite}</p>
+<p class="p1">.dot.running{background:var(--orange);box-shadow:0 0 8px var(--orange);animation:pulse 1s infinite}</p>
+<p class="p1">.dot.paused{background:var(--gold);box-shadow:0 0 8px var(--gold)}</p>
+<p class="p1">.dot.error{background:var(--red)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* LIVE POSITIONS */</p>
+<p class="p1">.live-panel{background:linear-gradient(135deg,rgba(255,140,0,0.08),rgba(255,214,0,0.04));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border:1px solid var(--orange);border-radius:14px;padding:16px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom:12px;display:none;position:relative;overflow:hidden}</p>
+<p class="p1">.live-panel.active{display:block}</p>
+<p class="p1">.live-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:linear-gradient(90deg,transparent,var(--orange),var(--gold),transparent)}</p>
+<p class="p1">.lp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}</p>
+<p class="p1">.lp-title{font-family:'Rajdhani';font-size:.58rem;color:var(--orange);letter-spacing:3px}</p>
+<p class="p1">.lp-badge{font-family:Share Tech Mono;font-size:.56rem;padding:3px 9px;border-radius:10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:rgba(255,140,0,.15);color:var(--orange);animation:pulse 1.5s infinite}</p>
+<p class="p1">.lp-badge.long{background:rgba(0,255,136,.15);color:var(--green)}</p>
+<p class="p1">.lp-badge.short{background:rgba(255,51,85,.15);color:var(--red)}</p>
+<p class="p1">.positions-grid{display:grid;gap:8px}</p>
+<p class="p1">.pos-card{background:rgba(255,140,0,.04);border:1px solid var(--border);border-radius:10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:11px;display:grid;grid-template-columns:1.3fr 1.7fr 1fr 1fr 1fr 1fr 1fr 0.85fr;gap:7px;align-items:center}</p>
+<p class="p1">.pos-card.long-card{border-left:3px solid var(--green)}</p>
+<p class="p1">.pos-card.short-card{border-left:3px solid var(--red)}</p>
+<p class="p1">@media(max-width:800px){.pos-card{grid-template-columns:1fr 1fr;gap:7px}}</p>
+<p class="p1">.pc-item{display:flex;flex-direction:column;gap:3px}</p>
+<p class="p1">.pc-label{font-family:Share Tech Mono;font-size:.48rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase}</p>
+<p class="p1">.pc-val{font-family:'Rajdhani';font-weight:700;line-height:1}</p>
+<p class="p1">.pc-coin{font-size:1.2rem;color:var(--orange)}</p>
+<p class="p1">.pc-pnl{font-size:1.4rem}</p>
+<p class="p1">.pc-pnl.pos{color:var(--green);text-shadow:0 0 14px rgba(0,255,136,.5)}</p>
+<p class="p1">.pc-pnl.neg{color:var(--red);text-shadow:0 0 14px rgba(255,51,85,.5)}</p>
+<p class="p1">.pc-pnl.zero{color:var(--gold)}</p>
+<p class="p1">.pc-sm{font-size:.75rem;color:var(--text)}</p>
+<p class="p1">.pc-green{color:var(--green)}.pc-red{color:var(--red)}.pc-gold{color:var(--gold)}</p>
+<p class="p1">.pc-cyan{color:var(--cyan)}.pc-orange{color:var(--orange)}.pc-purple{color:var(--purple)}</p>
+<p class="p1">.pc-stage{font-family:Share Tech Mono;font-size:.48rem;padding:2px 5px;border-radius:5px;margin-top:3px;display:inline-block}</p>
+<p class="p1">.stage-hunt{background:rgba(0,200,255,.15);color:var(--cyan)}</p>
+<p class="p1">.stage-tp1{background:rgba(0,255,136,.15);color:var(--green)}</p>
+<p class="p1">.stage-trail{background:rgba(255,214,0,.15);color:var(--gold)}</p>
+<p class="p1">.stage-be{background:rgba(0,255,136,.08);color:var(--green)}</p>
+<p class="p1">.stage-stale{background:rgba(255,51,85,.12);color:var(--red)}</p>
+<p class="p1">.pc-close-btn{padding:5px 10px;border-radius:6px;border:1px solid var(--red);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:rgba(255,51,85,.08);color:var(--red);font-family:'Rajdhani';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size:.55rem;font-weight:700;letter-spacing:2px;cursor:pointer;transition:all .2s;width:100%;margin-top:6px}</p>
+<p class="p1">.pc-close-btn:hover{background:rgba(255,51,85,.2)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* DRAWDOWN SAFETY BANNER */</p>
+<p class="p1">.safety-banner{display:none;background:rgba(255,51,85,.12);border:1px solid var(--red);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius:10px;padding:10px 16px;margin-bottom:12px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family:Share Tech Mono;font-size:.62rem;color:var(--red);text-align:center;letter-spacing:1px}</p>
+<p class="p1">.safety-banner.active{display:block}</p>
+<p class="p2"><br></p>
+<p class="p1">/* MODAL */</p>
+<p class="p1">.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:1000;display:none;align-items:center;justify-content:center}</p>
+<p class="p1">.modal-overlay.active{display:flex}</p>
+<p class="p1">.modal-box{background:#07080a;border:1px solid var(--red);border-radius:14px;padding:22px 26px;text-align:center;max-width:380px;width:95%}</p>
+<p class="p1">.modal-title{font-family:'Rajdhani';font-size:1rem;color:var(--red);letter-spacing:2px;margin-bottom:7px}</p>
+<p class="p1">.modal-sub{font-family:Share Tech Mono;font-size:.6rem;color:var(--text2);margin-bottom:16px;line-height:1.6}</p>
+<p class="p1">.modal-btns{display:flex;gap:9px;justify-content:center}</p>
+<p class="p1">.modal-yes{padding:9px 24px;border-radius:7px;border:1px solid var(--red);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:rgba(255,51,85,.2);color:var(--red);font-family:'Rajdhani';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size:.76rem;font-weight:700;letter-spacing:2px;cursor:pointer;transition:all .2s}</p>
+<p class="p1">.modal-yes:hover{background:var(--red);color:#fff}</p>
+<p class="p1">.modal-no{padding:9px 24px;border-radius:7px;border:1px solid var(--border);background:transparent;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color:var(--text2);font-family:'Rajdhani';font-size:.76rem;font-weight:700;letter-spacing:2px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cursor:pointer;transition:all .2s}</p>
+<p class="p1">.modal-no:hover{border-color:var(--orange);color:var(--orange)}</p>
+<p class="p1">.modal-info-row{display:flex;justify-content:space-between;background:rgba(255,140,0,.04);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border:1px solid var(--border);border-radius:7px;padding:7px 11px;margin-bottom:11px}</p>
+<p class="p1">.modal-info-item{display:flex;flex-direction:column;align-items:center;gap:2px}</p>
+<p class="p1">.modal-info-label{font-family:Share Tech Mono;font-size:.48rem;color:var(--text2);letter-spacing:2px}</p>
+<p class="p1">.modal-info-val{font-family:'Rajdhani';font-size:.82rem;font-weight:700}</p>
+<p class="p1">.modal-price-input{width:100%;background:rgba(255,140,0,.06);border:1px solid var(--orange);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius:7px;padding:8px 11px;color:var(--orange);font-family:Share Tech Mono;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size:.75rem;outline:none;text-align:center;margin-bottom:12px}</p>
+<p class="p1">.modal-price-input::placeholder{color:var(--text2);opacity:.4}</p>
+<p class="p1">.modal-price-label{font-family:Share Tech Mono;font-size:.5rem;color:var(--text2);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:2px;margin-bottom:4px;text-align:left}</p>
+<p class="p2"><br></p>
+<p class="p1">/* PANELS */</p>
+<p class="p1">.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:16px;margin-bottom:12px;position:relative;overflow:hidden}</p>
+<p class="p1">.panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:linear-gradient(90deg,transparent,var(--orange),transparent)}</p>
+<p class="p1">.panel-title{font-family:'Rajdhani';font-size:.58rem;font-weight:700;color:var(--orange);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:3px;text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:7px}</p>
+<p class="p1">.panel-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}</p>
+<p class="p1">.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}</p>
+<p class="p1">@media(max-width:520px){.input-grid{grid-template-columns:1fr}}</p>
+<p class="p1">.input-group{display:flex;flex-direction:column;gap:4px}</p>
+<p class="p1">.input-group label{font-family:Share Tech Mono;font-size:.54rem;color:var(--text2);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:2px;text-transform:uppercase}</p>
+<p class="p1">.input-group input,.input-group select{background:rgba(255,140,0,.05);border:1px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius:6px;padding:7px 10px;color:var(--text);font-family:Share Tech Mono;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size:.75rem;outline:none;transition:border-color .2s}</p>
+<p class="p1">.input-group input:focus,.input-group select:focus{border-color:var(--orange);box-shadow:0 0 8px rgba(255,140,0,.12)}</p>
+<p class="p1">.input-group input::placeholder{color:var(--text2);opacity:.4}</p>
+<p class="p1">.input-group select option{background:#07080a}</p>
+<p class="p1">.btn-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}</p>
+<p class="p1">.btn{padding:8px 16px;font-family:'Rajdhani';font-weight:700;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;border-radius:6px;border:1px solid transparent;cursor:pointer;transition:all .2s}</p>
+<p class="p1">.btn-primary{background:var(--orange);color:#fff}</p>
+<p class="p1">.btn-primary:hover{background:#e07200}</p>
+<p class="p1">.btn-danger{background:var(--red);color:#fff}</p>
+<p class="p1">.btn-danger:hover{background:#d02040}</p>
+<p class="p1">.btn-secondary{background:transparent;border-color:var(--border);color:var(--text)}</p>
+<p class="p1">.btn-secondary:hover{background:var(--panel);border-color:var(--orange)}</p>
+<p class="p1">.hidden{display:none !important}</p>
+<p class="p2"><br></p>
+<p class="p1">/* STATS */</p>
+<p class="p1">.stats-row{display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;margin-bottom:12px}</p>
+<p class="p1">@media(max-width:768px){.stats-row{grid-template-columns:repeat(2, 1fr)}}</p>
+<p class="p1">.stat-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}</p>
+<p class="p1">.stat-label{font-family:Share Tech Mono;font-size:.48rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase}</p>
+<p class="p1">.stat-value{font-family:'Rajdhani';font-size:1.4rem;font-weight:700;margin:4px 0}</p>
+<p class="p1">.stat-value.green{color:var(--green)}</p>
+<p class="p1">.stat-value.red{color:var(--red)}</p>
+<p class="p1">.stat-value.orange{color:var(--orange)}</p>
+<p class="p1">.stat-value.yellow{color:var(--gold)}</p>
+<p class="p1">.stat-value.cyan{color:var(--cyan)}</p>
+<p class="p1">.stat-sub{font-family:Share Tech Mono;font-size:.44rem;color:var(--text2)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* MARKET CONDITIONS */</p>
+<p class="p1">.market-grid{display:grid;grid-template-columns:repeat(5, 1fr);gap:7px;margin-bottom:12px}</p>
+<p class="p1">@media(max-width:560px){.market-grid{grid-template-columns:repeat(2, 1fr)}}</p>
+<p class="p1">.market-card{background:rgba(255,140,0,.03);border:1px solid var(--border);border-radius:7px;padding:8px;text-align:center}</p>
+<p class="p1">.mc-label{font-family:Share Tech Mono;font-size:.51rem;color:var(--text2);margin-bottom:3px}</p>
+<p class="p1">.mc-val{font-family:'Rajdhani';font-size:.64rem;font-weight:700}</p>
+<p class="p1">.mc-green{color:var(--green)}.mc-red{color:var(--red)}.mc-gold{color:var(--gold)}</p>
+<p class="p1">.mc-orange{color:var(--orange)}.mc-cyan{color:var(--cyan)}.mc-purple{color:var(--purple)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* REGIME */</p>
+<p class="p1">.regime-bar{background:var(--panel);border:1px solid var(--border);border-radius:10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:11px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}</p>
+<p class="p1">.regime-label{font-family:Share Tech Mono;font-size:.54rem;color:var(--text2);letter-spacing:2px}</p>
+<p class="p1">.regime-badge{font-family:'Rajdhani';font-size:.7rem;font-weight:700;padding:4px 12px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius:16px;letter-spacing:2px}</p>
+<p class="p1">.regime-hot{background:rgba(255,140,0,.2);color:var(--orange);border:1px solid rgba(255,140,0,.4)}</p>
+<p class="p1">.regime-warm{background:rgba(255,214,0,.15);color:var(--gold);border:1px solid rgba(255,214,0,.3)}</p>
+<p class="p1">.regime-cold{background:rgba(100,100,120,.15);color:var(--text2);border:1px solid rgba(100,100,120,.3)}</p>
+<p class="p1">.regime-stats{display:flex;gap:12px;margin-left:auto;flex-wrap:wrap}</p>
+<p class="p1">.rs-item{font-family:Share Tech Mono;font-size:.57rem;color:var(--text2)}</p>
+<p class="p1">.rs-item span{color:var(--text)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* SCORE SECTION */</p>
+<p class="p1">.score-section{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:12px}</p>
+<p class="p1">.score-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}</p>
+<p class="p1">.score-title{font-family:'Rajdhani';font-size:.58rem;color:var(--orange);letter-spacing:2px}</p>
+<p class="p1">.score-grade{font-family:'Rajdhani';font-size:1.5rem;font-weight:700}</p>
+<p class="p1">.grade-a-plus{color:var(--green);text-shadow:0 0 12px rgba(0,255,136,.5)}</p>
+<p class="p1">.grade-a{color:var(--gold)}.grade-b{color:var(--orange)}.grade-c{color:var(--red)}</p>
+<p class="p1">.score-bars{display:grid;grid-template-columns:1fr 1fr;gap:4px}</p>
+<p class="p1">@media(max-width:520px){.score-bars{grid-template-columns:1fr}}</p>
+<p class="p1">.sbar{display:flex;align-items:center;gap:6px}</p>
+<p class="p1">.sbar-label{font-family:Share Tech Mono;font-size:.5rem;color:var(--text2);width:82px;white-space:nowrap}</p>
+<p class="p1">.sbar-track{flex:1;height:5px;background:rgba(255,140,0,.07);border-radius:3px;overflow:hidden;border:1px solid rgba(255,140,0,.08)}</p>
+<p class="p1">.sbar-fill{height:100%;border-radius:3px;transition:width .6s ease}</p>
+<p class="p1">.sbar-fill.high{background:var(--green)}</p>
+<p class="p1">.sbar-fill.mid{background:var(--gold)}</p>
+<p class="p1">.sbar-fill.low{background:var(--red)}</p>
+<p class="p1">.sbar-num{font-family:Share Tech Mono;font-size:.5rem;color:var(--text)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* SIGNAL MONITOR */</p>
+<p class="p1">.signal-monitor{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px;margin-bottom:12px}</p>
+<p class="p1">.indicator-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px}</p>
+<p class="p1">@media(max-width:560px){.indicator-grid{grid-template-columns:repeat(2,1fr)}}</p>
+<p class="p1">.ind-card{background:rgba(255,140,0,.03);border:1px solid var(--border);border-radius:7px;padding:7px;text-align:center}</p>
+<p class="p1">.ind-card.bull{border-color:rgba(0,255,136,.5);background:rgba(0,255,136,.05)}</p>
+<p class="p1">.ind-card.bear{border-color:rgba(255,51,85,.5);background:rgba(255,51,85,.05)}</p>
+<p class="p1">.ind-card.neut{border-color:rgba(255,214,0,.3);background:rgba(255,214,0,.03)}</p>
+<p class="p1">.ind-name{font-family:Share Tech Mono;font-size:.48rem;color:var(--text2);margin-bottom:2px}</p>
+<p class="p1">.ind-val{font-family:'Rajdhani';font-size:.55rem;font-weight:700}</p>
+<p class="p1">.ind-bull{color:var(--green)}.ind-bear{color:var(--red)}.ind-neut{color:var(--gold)}</p>
+<p class="p1">.signal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:8px}</p>
+<p class="p1">@media(max-width:600px){.signal-grid{grid-template-columns:repeat(3,1fr)}}</p>
+<p class="p1">.signal-card{background:rgba(255,140,0,.03);border:1px solid var(--border);border-radius:6px;padding:6px;text-align:center}</p>
+<p class="p1">.signal-card.bullish{border-color:rgba(0,255,136,.4);background:rgba(0,255,136,.04)}</p>
+<p class="p1">.signal-card.bearish{border-color:rgba(255,51,85,.4);background:rgba(255,51,85,.04)}</p>
+<p class="p1">.sc-pair{font-family:Share Tech Mono;font-size:.54rem;color:var(--orange);margin-bottom:2px}</p>
+<p class="p1">.sc-signal{font-family:'Rajdhani';font-size:.52rem;font-weight:700}</p>
+<p class="p1">.sc-bull{color:var(--green)}.sc-bear{color:var(--red)}.sc-neut{color:var(--gold)}</p>
+<p class="p1">.sc-score{font-family:Share Tech Mono;font-size:.48rem;color:var(--text2);margin-top:1px}</p>
+<p class="p1">.sc-setup{font-family:Share Tech Mono;font-size:.44rem;color:var(--text2);margin-top:1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}</p>
+<p class="p2"><br></p>
+<p class="p1">/* MAIN GRID */</p>
+<p class="p1">.main-grid{display:grid;grid-template-columns:1fr 280px;gap:10px;margin-bottom:12px}</p>
+<p class="p1">@media(max-width:760px){.main-grid{grid-template-columns:1fr}}</p>
+<p class="p1">.trade-log{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}</p>
+<p class="p1">.log-header{padding:8px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}</p>
+<p class="p1">.log-title{font-family:'Rajdhani';font-size:.54rem;color:var(--orange);letter-spacing:2px}</p>
+<p class="p1">.log-count{font-family:Share Tech Mono;font-size:.54rem;color:var(--text2)}</p>
+<p class="p1">.log-body{height:280px;overflow-y:auto;padding:4px}</p>
+<p class="p1">.log-body::-webkit-scrollbar{width:3px}</p>
+<p class="p1">.log-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}</p>
+<p class="p1">.trade-entry{display:grid;grid-template-columns:30px 1.1fr 22px 38px 70px 44px 60px;gap:4px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>align-items:center;padding:5px 6px;border-radius:5px;margin-bottom:2px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family:Share Tech Mono;font-size:.58rem;border:1px solid transparent;animation:slideIn .3s ease}</p>
+<p class="p1">@keyframes slideIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}</p>
+<p class="p1">.trade-entry.win{border-left:2px solid var(--green);background:rgba(0,255,136,.03)}</p>
+<p class="p1">.trade-entry.loss{border-left:2px solid var(--red);background:rgba(255,51,85,.03)}</p>
+<p class="p1">.trade-entry.open{border-left:2px solid var(--orange);background:rgba(255,140,0,.03)}</p>
+<p class="p1">.te-time{color:var(--text2);font-size:.48rem}</p>
+<p class="p1">.te-pair{color:var(--orange);font-weight:600}</p>
+<p class="p1">.te-long{color:var(--green)}.te-short{color:var(--red)}</p>
+<p class="p1">.te-pnl-pos{color:var(--green);font-weight:600}.te-pnl-neg{color:var(--red);font-weight:600}</p>
+<p class="p1">.te-status{font-size:.48rem;padding:1px 4px;border-radius:3px;text-align:center}</p>
+<p class="p1">.te-open{background:rgba(255,140,0,.15);color:var(--orange)}</p>
+<p class="p1">.te-closed{background:rgba(0,255,136,.1);color:var(--green)}</p>
+<p class="p1">.te-stopped{background:rgba(255,51,85,.1);color:var(--red)}</p>
+<p class="p1">.te-stale{background:rgba(176,96,255,.1);color:var(--purple)}</p>
+<p class="p1">.te-setup{font-size:.42rem;color:var(--text2);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}</p>
+<p class="p2"><br></p>
+<p class="p1">/* STRATEGY PANEL */</p>
+<p class="p1">.strategy-panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}</p>
+<p class="p1">.sp-header{padding:8px 12px;border-bottom:1px solid var(--border)}</p>
+<p class="p1">.sp-title{font-family:'Rajdhani';font-size:.54rem;color:var(--orange);letter-spacing:2px}</p>
+<p class="p1">.sp-body{padding:8px;max-height:280px;overflow-y:auto}</p>
+<p class="p1">.sp-body::-webkit-scrollbar{width:3px}</p>
+<p class="p1">.sp-body::-webkit-scrollbar-thumb{background:var(--border)}</p>
+<p class="p1">.sp-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid rgba(255,140,0,.04)}</p>
+<p class="p1">.sp-row:last-child{border-bottom:none}</p>
+<p class="p1">.sp-key{color:var(--text2);font-family:Share Tech Mono;font-size:.52rem}</p>
+<p class="p1">.sp-val{color:var(--text);font-family:Share Tech Mono;font-size:.56rem}</p>
+<p class="p1">.sp-val.green{color:var(--green)}.sp-val.yellow{color:var(--gold)}</p>
+<p class="p1">.sp-val.orange{color:var(--orange)}.sp-val.red{color:var(--red)}.sp-val.purple{color:var(--purple)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* UNIVERSE */</p>
+<p class="p1">.universe-bar{background:rgba(255,140,0,.03);border:1px solid var(--border);border-radius:8px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:9px 12px;margin-bottom:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}</p>
+<p class="p1">.universe-label{font-family:Share Tech Mono;font-size:.54rem;color:var(--text2);letter-spacing:2px}</p>
+<p class="p1">.universe-count{font-family:'Rajdhani';font-size:.85rem;font-weight:700;color:var(--orange)}</p>
+<p class="p1">.universe-progress{flex:1;height:5px;background:rgba(255,140,0,.07);border-radius:3px;overflow:hidden;min-width:80px}</p>
+<p class="p1">.universe-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--gold));border-radius:3px;transition:width .6s ease}</p>
+<p class="p2"><br></p>
+<p class="p1">/* CONSOLE */</p>
+<p class="p1">.console{background:#010205;border:1px solid var(--border);border-radius:10px;padding:10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>height:130px;overflow-y:auto;font-family:Share Tech Mono;font-size:.58rem;line-height:1.75;margin-bottom:12px}</p>
+<p class="p1">.console::-webkit-scrollbar{width:3px}</p>
+<p class="p1">.console::-webkit-scrollbar-thumb{background:var(--border)}</p>
+<p class="p1">.cl{margin-bottom:1px;animation:fadeIn .3s ease}</p>
+<p class="p1">@keyframes fadeIn{from{opacity:0}to{opacity:1}}</p>
+<p class="p1">.ct{color:var(--text2)}.ci{color:var(--cyan)}.cs{color:var(--green)}.cw{color:var(--gold)}</p>
+<p class="p1">.ce{color:var(--red)}.ctr{color:var(--orange)}.cp{color:var(--purple)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* REPORT */</p>
+<p class="p1">.report-panel{background:rgba(255,140,0,.02);border:1px solid rgba(255,140,0,.08);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius:10px;padding:10px 14px;margin-bottom:12px}</p>
+<p class="p1">.report-title{font-family:'Rajdhani';font-size:.54rem;color:var(--text2);letter-spacing:2px;margin-bottom:7px}</p>
+<p class="p1">.report-btns{display:flex;gap:6px;flex-wrap:wrap}</p>
+<p class="p1">.report-btn{padding:5px 11px;border-radius:5px;border:1px solid rgba(255,140,0,.2);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:transparent;color:var(--text2);font-family:Share Tech Mono;font-size:.56rem;cursor:pointer;transition:all .2s}</p>
+<p class="p1">.report-btn:hover{border-color:var(--orange);color:var(--orange);background:rgba(255,140,0,.05)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* TIER SCANNER indicator */</p>
+<p class="p1">.tier-pill{font-family:Share Tech Mono;font-size:.5rem;padding:2px 7px;border-radius:10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-left:6px;vertical-align:middle}</p>
+<p class="p1">.tier1{background:rgba(0,200,255,.1);color:var(--cyan)}</p>
+<p class="p1">.tier2{background:rgba(255,140,0,.1);color:var(--orange)}</p>
+<p class="p2"><br></p>
+<p class="p1">.hidden{display:none!important}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;div class="scanline"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- ===== CONFIRM CLOSE MODAL ===== --&gt;</p>
+<p class="p1">&lt;div class="modal-overlay" id="confirmModal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="modal-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-title"&gt;⛔ CLOSE POSITION?&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-sub"&gt;Limit close for &lt;strong id="modalCoin" style="color:var(--orange)"&gt;—&lt;/strong&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-info-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="modal-info-item"&gt;&lt;div class="modal-info-label"&gt;PRICE&lt;/div&gt;&lt;div class="modal-info-val" style="color:var(--orange)" id="modalCurPrice"&gt;—&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="modal-info-item"&gt;&lt;div class="modal-info-label"&gt;P&amp;L&lt;/div&gt;&lt;div class="modal-info-val" id="modalPnl"&gt;—&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="modal-info-item"&gt;&lt;div class="modal-info-label"&gt;ENTRY&lt;/div&gt;&lt;div class="modal-info-val" style="color:var(--text)" id="modalEntry"&gt;—&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="modal-info-item"&gt;&lt;div class="modal-info-label"&gt;SIDE&lt;/div&gt;&lt;div class="modal-info-val" id="modalSide"&gt;—&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-price-label"&gt;LIMIT PRICE (blank = best bid/ask)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input class="modal-price-input" type="number" id="modalLimitPrice" placeholder="Auto best bid/ask" step="0.0001"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-btns"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="modal-yes" onclick="confirmClose()"&gt;YES, CLOSE&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="modal-no" onclick="cancelClose()"&gt;CANCEL&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- BALAJI BRAND HERO (top-center) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="brand-hero"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARUAAADwCAYAAAAuEPBnAAEAAElEQVR4nOz9d5ycV3rfiX7POW+qXNU5oZEzQIJpmIYckhM0WZY0xMiyJMuWbVlaX/va1+u9XlkLwN79+Pr6ru21ZckaaS3JkmUJUJjR5Mgww2GOyBkNoHN35fSGc87+UQ1yRnvX0u5aZjdZX36K3V1V3XjrvPX+6nme8wTo0+c/w/HjjysAa+2wtTZ7635rj8i376j69OmzEREWBMBxa9UL3/itf/Hq137x5JUrz35SeT4AR44grbXibT3KPuuO/huiz/8Oe/y4OnHiMIdPoG/efO6/KX/59/5qEl2+fXDPsFpaEiTtwa8cePjn/n5u5+bTANZaIYSwb/dx91kf9EWlz/dhjxyR4tgxA4qTf/SLf1/Pf/OfT+Qjsts3401OmKRelbNXLlIOc2WTec//+p6P/Nw/FELo48ePq8OHD+u3+/j7vP04b/cB9Fk/PHHkiCOOHUtqC1fvu/nM8b+aWfn6Xw+S121q+DbjTO1RDAxLL3OWcbWk7fkXB2qLjf/27FfUgrX2N4UQq9YekUIcM2/36+jz9tIXlT5AL/AqxLGkbuv7zv6vR37nQPjc1lb7nGlObJf5ic3KLY6jgxTGdlHCVRktTNR4wZq48j8//5unfyaau/RjQux4+fjjj6vDJ070LZZ3MX1R6XMrJmIaF288cvHf/dwvT0bnts7P34hlLuWWxiZhdACTSiGBRAqEkyfwBmQcXsJtvGDGgsauZz9rPmubsz8tspNf68dY3t30twXf5Rw5ckQiBNbarc898a+Oj9TP7nErC2bZaNfbMkp+rEiQHgQjIU4gCRB+m9Rgi2xxgkZrRNZqSyYof3vqO7/+P/5h+9rFB4QQ9siR/pbzu5V+oPZdTs+qUPbcl//1fzQXfv/HvEo9qVSqTnpzh4lDUxT3vRdyd4G7BUQdoqeh8V30/DKrF1PMzhg6K0uUPKnnw7SKCvdf+vB//xv3CiEq1lr6Fsu7j/6nybsYa60UQlhr9ZbLLz79IT1/3TabDRWpLpkBn9RQFpv26PqK0BEYpbFOjFZg0x5yqIPKtXCNIm4nKuNjksq17a/+wa99GvFmmkufdxl9UXkXc+LEYQHw6jd/9ycLoj2UMo41na5wZIiUYKVCW422McI2kVGVuB1hYxeLAkfj+gJH+IShIbDYXFwXOf3oEepb/jr6vL30RaXP/dhjxyR4tgxA4qTf/SLf1/Pf/OfT+Qjsts3401OmKRelbNXLlIOc2WTec//+p6P/Nw/FELo48ePq8OHD+u3+/j7vP04b/cB9Fk/PHHkiCOOHUtqC1fvu/nM8b+aWfn6Xw+S121q+DbjTO1RDAxLL3OWcbWk7fkXB2qLjf/27FfUgrX2N4UQq9YekUIcM2/36+jz9tIXlT5AL/AqxLGkbuv7zv6vR37nQPjc1lb7nGlObJf5ic3KLY6jgxTGdlHCVRktTNR4wZq48j8//5unfyaau/RjQux4+fjjj6vDJ070LZZ3MX1R6XMrJmIaF288cvHf/dwvT0bnts7P34hlLuWWxiZhdACTSiGBRAqEkyfwBmQcXsJtvGDGgsauZz9rPmubsz8tspNf68dY3t30twXf5Rw5ckQiBNbarc898a+Oj9TP7nErC2bZaNfbMkp+rEiQHgQjIU4gCRB+m9Rgi2xxgkZrRNZqSyYof3vqO7/+P/5h+9rFB4QQ9siR/pbzu5V+oPZdTs+qUPbcl//1fzQXfv/HvEo9qVSqTnpzh4lDUxT3vRdyd4G7BUQdoqeh8V30/DKrF1PMzhg6K0uUPKnnw7SKCvdf+vB//xv3CiEq1lr6Fsu7j/6nybsYa60UQlhr9ZbLLz79IT1/3TabDRWLh0UAs9f///W7M7b///+yT//////+n+oOq///qM///qU6Wv//////////t6n/////////1gAALaAJGAP/////////3LpPMSzYXB2olnMh7Ekj/6v//00mULgO4bDpnpGjS+PAeBktqKOiSRRnaGeFmCh1ZkVTGklEm0iSDpRUByuNkCJfx0IAiQjDBIYoApgYOyohFBjUSmChWDlqYxHxkEDGRw2NDxKMFUAYcGTJqxJxUIAAmJDnXKCEWnoDmgOtnPDqNGBCmdIh0EIGJaops7ARgWQp9mgBCyRzZXJ0Oy1AqALzJxtDTwRuBRRrawCH6mJaBryYadDDxUM/0MzjPG+TXQcchejWnkaMoq9jhpfp8t1UwWgoKl6vpSa7FTrXgZi8NMZX+58Jh5aSqbiyS7af9x5GqnCXucejeJZDE1dpqP4whw1nRVpjtPM+TdolJ9SqBN09um1TQDajETpqreVOjsmUoc6F97gRliIDgAAgAAgBFMWwhw4KVAC5jgCQxmTGwCiiukVGaSg3iKk1JRSKAxhGgIlhvv////8wAsIDmkUXT////1D8GegZIiCIKKQAwEADBlAy2UFmlv//RGbOu/8oDmHhjA9ESwRyBQIAceCxUL3C2jnm5QFyjuNG///+kNwiguY2G1HSShJajETweGuWT/3f1MzDjZlANIZQoDYQJUGtGGSQAIWe4yepCZpKWCxNBBg8wIwiEqRTdXbTwmWOAn+vp2MhkC/o0gvT+5e7MzYfFHC3YkG9WshfViR////yR6NnUvV0YURyYVEx/0b36uUbyr9vYgN8Oof////n//////0VMRZkY0t//ZgR//2uM4UvRzQO8zDURv7Z6vQ6/bV61b369rUunl6N/3//+uD7S7P7f6mMRBwEAAOBTkh80HDoWp0QGAsQY00hVDEIsyYpI9D2ZzJEUg2mXW0KxCHH46U/pU08V7A4uVv6n80YVl907N////7kYv/3860uE9vGkF9g7f//8vO9/z6TNP/ZcoKBAEAADgGZfA1A7AsZg9RREMMOOM9jDoMIsfIsKBAvIsQosIosE/M6yGgQv9YIsS4wF0s3KzAgvEZZxR3O7b/V2g9kAg4DDoaHhVAcX9G7SgwRNY8rG5eN6sToS69LNoM2bFf3qFesVdGfAsqfT4FmI9rU6zD80lIpsqP//////i0ZgIDBQAQAAAHAY0+XF3hF4UqHlYIDpInFmK/N6TAYqEAh4YmK7kLggTIDLpTcozM97Z3Z6mMyYpQ5478Qv/uOf//1Yw98aV////0Ea4Z/9OQkH/+gU6YgL4AAAAgIDAsbM4QGfLByg0xCHhLgJ2Rph0WjDTo9BocmBv4tZ+WCHIsd7R0XFjN/VbJ/LpE/j/vAmsF3+QdFk9I/WfGgS4Y48vC2W38Z8O3jZ12M6fK/9ZgMyI4OQY9gVpP8V4zGfGMDxZz1v9///8V/DshMv+Y/6N///+pZ8LwzL4jInF586QkG////+7Bk7YAGbWfT621luDoHKq8hSxsYHZ9P7WHuIVisKzyWqHxhtnyFh0qOn7j6RzCq2Gj4i7f////mOfO4m3b1B0z3//pW///vMygABgAIEA1LInwWv+eW3T///QW5w6mCOgsh5o2K26XWbJ+uXqZ+X006kQ3A986lX/7t8A6U57m2C3/R3Gf8//qJpA8X+Wf/////Qf33MshlMABgAgAkN7fNgxJvFhlx6aWDAv4Z+CjQxMYyEAs8yQpMECZ6NfDoK1xVfHAcEAm9vW06jInoWvEw8W6i1gU27W/V7g2mUZa0/KxIDL4rU0V89L+8Ff/V5jZ9j66Nq7N57bS7O+f9+OOf6o0OPhZ6iWn//88Z/U8uR5fHof//5W9eOfMREhXmUqbygYh8Eis0g3Rz8iK5mO06f+pX//+YmN3Y09vG0vYgIAnIAY6AEM+yNf3j2eK3//UvNOfn4Zl01t11bN7p9l3XvNqWjX6eQG/N96mG9XU66P4bYmEv8rCPgSgnrPiv/g7D///mP////mZ///y0O0XRAEABAC9AAM7ZgK+V/uS5x/qO4L2C6Tf5pEun/63P69H9mN+fI73V/pW/9n4h0fSgAEyL1oZfGv/9SshKjSgAAHAADmC6Bgh9Z6Z/1H+tQ/M/1mB7KzT3/+gZp//9G9f7T3F3oO6n/+ZCH0A9b//m7pE3f1oAYAAQBKdfgqM81YEMrCgB05UfIqQ0xRIdLAsID5gEGAe4w8bZpUInX/9Vl71K7vj+Q79R4XN8oRE4bA9fXW3///V3///9EAACHAAAIAC8GqN0jDRE7E6x84T6XhL2U9iYV5qK68S8VnS4gJv+m0+uWzI9XN/A6xI7vTshmI9uYvQ7Q7Y7jU7mPz8/98877i6n9mOnjM5eXqI7v07z/T9j3m/tE/+hY48qH698mOAAgAAbU14uB75Y4SjYjDmsLshU7g2LqUoDq3zL4vG/fP////KjPMyZ3Yg/D26C60g6bE49///0mP7Bf///Xl4jZ0+zSMCgEAqQAJbkvK2gXgIDyH/46mZ5q9+gV+rXor97/V0VAn/O4mK/Uat+fI7/f1EEXXUbyGId61F1f0Zov9M6eAAsEACSm7zXHDAsRMcQv6bLqYFAn7gXj/qIDmAnl0SMCg5vW71vNlO4uH1gE86qN6w7uL7z/R9a7+N/99P+TIn///9Q2UoK6AAgAACbcz6Q9WkLshkQy9R8GkAg0zYfJg5qI8K0M+VbW3YkCjIs+kRco9L6Lh7C2C9gO3K02XmK6Dk6M5C6X2I/E8pL9uQid/6/p/2N/0O3//W8vN76L7uTj0EEX/6/N3OEvm/yFqGfP/f9IuN//w/88rAIsAAL49OAAQkM28z2QpL2v1LRE6KWeYmZ+fIn6eW6pUfFasg/+mBf/mU63/+g9///N/+YgH6H/y2AAAsAGgZ63uXyFov7X0K6LwW/O1Y3I7i8f0K5R8+V0v/6Xf//W/T/6/9M7//HhN///S96LCHgAQAAAco5Y80D8fR6uG6U0Cj7O3HlE68C5E4ZzF50XyvW8912/rG8zVpL2gL9U+WshVf+O/9F9C3///+T/m0eP9P+UAAgIAEEmuyCgE6vGZtZ6mHh60b6JcI8P5E6xIeR0bI92RREu7tP+TIsyRorM0P/R/+Nf////62/+62f/N06V8vLqTBAAAE0OcgN6p7M+Z8GfJvI6HqF4KOfvUfHAnuWeXQO72S+mZ9y3S9H9f7f457788uFv////8X/69u/U61D0gEAgACSXM9KIDo0QO47UvUicbUoGg2h2M6TOfi8gP1P2zN///oIq/1l49///T////9A/873rWz9REICAAKcuID6lOAsO6BwwVq316IclU88Ror9DNoI6fXp/1F887f1p/qf////0uRAnv5V6vCUAIEAACpLnXFAo8Uf9KAtKOnC8O0M876yVqf//0Gv//X+or///o9C3X67pIEgAIlO87TAsU54x+vN/+vjIujMWeO87399S8G2U62qM6h7v0/MvMvI/M4l6b/r/9n//56rOf97bWp67QAEAgAgkpzc3mHshqLp9X7X8Fqf4v7gYcIeC4bE28YfMhL/X360f/+ov//yGv//63qgEAAEAnJyvO0zH070pAn5rW6YgE2P+v3H51t/QY+XvV6V0f///T/yv9V//+iIAEAASSnJyHHDuYfC2Fp5H5HwIuIuG3fN/nAnuW/9I93/+Yf/XgP///8uX+vV/+f/9R8XAEQAAlyXvIDU4b6H0YfD17fC/Bdfp9v/zX/WfLpL613u9Yv//6f//7X//+gRCAAlObkMHAqAnF0WOn292U4R5U6Vv8a//M///p/mB7f////7X//+YgQIAEpy3hwy6O099ZpT+PzBfU59v1G6/9aP/1/pMv9f//+Yf/6/82bCAAUlycO0C2A0t079E3HofjZgH/0qWb//U//+v//Wv//mIgAQAkpzWHApAs+aUv93/F3qGAnpLpMevpQf////X/X/9Yf/YgAQAJSW5uYIAdC6fEicQe9+OPr8Y87X839/T/9f9Rv//8v99YQEACSlyckB6A56Z8H9XnU6Z988gXjVof////X////ZggAABTluID6i8NOHW07fH/E/vXqO9v3W/////zCAAUlyYODbI6SgTDo/fXfD9eFw0+L5Vv////p//9IuIACSXN9A2gK8YInyvS/9R/9f7P6P/S9///MIAEgJSW5gUfDoB0vj/pWv6v+s///S8SABKcnIYMOnbVpP5H7779f/r///WggIlychgwdH///g4Ag==',</p>
+<p class="p1">};</p>
+<p class="p2"><br></p>
+<p class="p1">function playAudio(event) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (['entry', 'tp', 'sl', 'setup', 'test'].includes(event)) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>playSound(event);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Global engine configuration state</p>
+<p class="p1">const G = {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// WebSocket control</p>
+<p class="p1"><span class="Apple-converted-space">  </span>ws: null,</p>
+<p class="p1"><span class="Apple-converted-space">  </span>wsConnecting: false,</p>
+<p class="p1"><span class="Apple-converted-space">  </span>wsOrderChannel: null, // private WS channel for rapid orders</p>
+<p class="p1"><span class="Apple-converted-space">  </span>wsRetryCount: 0,</p>
+<p class="p1"><span class="Apple-converted-space">  </span>wsPingInterval: null,</p>
+<p class="p1"><span class="Apple-converted-space">  </span>activeSubscriptions: new Set(),</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Real-time market data cache (key: symbol, val: historical candle array)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>kline1mCache: {},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>kline15mCache: {},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>tickerCache: {},</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// High-frequency task schedules</p>
+<p class="p1"><span class="Apple-converted-space">  </span>macroScanInterval: null,</p>
+<p class="p1"><span class="Apple-converted-space">  </span>deepScanInterval: null,</p>
+<p class="p1">};</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================</p>
+<p class="p1">// SECTION D (ENHANCED) — BYBIT LOW-LATENCY WEBSOCKET CLIENT</p>
+<p class="p1">// ============================================================</p>
+<p class="p1">class BybitWebSocketClient {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>constructor(network = 'mainnet') {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>this.network = network;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>this.endpoint = network === 'mainnet'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>? 'wss://stream.bybit.com/v5/public/linear'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>: 'wss://stream-testnet.bybit.com/v5/public/linear';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>this.privateEndpoint = network === 'mainnet'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>? 'wss://stream.bybit.com/v5/private'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>: 'wss://stream-testnet.bybit.com/v5/private';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>connect() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.ws &amp;&amp; (G.ws.readyState === WebSocket.OPEN || G.ws.readyState === WebSocket.CONNECTING)) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>G.wsConnecting = true;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('i', `🔌 Initializing low-latency WebSocket connection (${this.network})...`);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.ws = new WebSocket(this.endpoint);</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.ws.onopen = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>G.wsConnecting = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>G.wsRetryCount = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log('s', '🔌 WebSocket Connection established successfully.');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>this.startHeartbeat();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>this.resubscribeAll();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.ws.onmessage = (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>this.handleMessage(JSON.parse(event.data));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.ws.onerror = (error) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log('e', `🔌 WebSocket Error: ${error.message || 'Unknown network error'}`);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.ws.onclose = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>G.wsConnecting = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>this.stopHeartbeat();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log('w', '🔌 WebSocket Connection closed. Attempting auto-reconnection...');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>this.reconnect();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch(e) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.wsConnecting = false;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>log('e', `🔌 Failed to build WebSocket client: ${e.message}`);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>this.reconnect();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>reconnect() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.wsConnecting) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const delay = Math.min(30000, Math.pow(2, G.wsRetryCount) * 1000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>G.wsRetryCount++;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('i', `🔌 Reconnecting in ${(delay / 1000).toFixed(0)}s (Attempt #${G.wsRetryCount})`);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setTimeout(() =&gt; this.connect(), delay);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>startHeartbeat() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>G.wsPingInterval = setInterval(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (G.ws &amp;&amp; G.ws.readyState === WebSocket.OPEN) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>G.ws.send(JSON.stringify({ op: "ping" }));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}, 20000);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>stopHeartbeat() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.wsPingInterval) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>clearInterval(G.wsPingInterval);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.wsPingInterval = null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>subscribe(topic) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.activeSubscriptions.has(topic)) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>G.activeSubscriptions.add(topic);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>this.sendPayload({ op: "subscribe", args: [topic] });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>unsubscribe(topic) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!G.activeSubscriptions.has(topic)) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>G.activeSubscriptions.delete(topic);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>this.sendPayload({ op: "unsubscribe", args: [topic] });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>resubscribeAll() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.activeSubscriptions.size === 0) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const args = Array.from(G.activeSubscriptions);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>this.sendPayload({ op: "subscribe", args });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('i', `🔌 Restored ${args.length} real-time data subscriptions.`);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>sendPayload(payload) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.ws &amp;&amp; G.ws.readyState === WebSocket.OPEN) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.ws.send(JSON.stringify(payload));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>handleMessage(msg) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (msg.op === 'pong') return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!msg.topic || !msg.data) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const parts = msg.topic.split('.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const streamType = parts[0]; // e.g. "kline" or "tickers"</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const param = parts[1];<span class="Apple-converted-space">      </span>// resolution (e.g. "1") or symbol</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const symbol = parts[parts.length - 1];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (streamType === 'kline') {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const interval = param;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const candles = Array.isArray(msg.data) ? msg.data : [msg.data];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>this.updateKlineCache(symbol, interval, candles);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (streamType === 'tickers') {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>this.updateTickerCache(symbol, msg.data);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>updateKlineCache(symbol, interval, rawCandles) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cacheMap = interval === '1' ? G.kline1mCache : G.kline15mCache;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!cacheMap[symbol]) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cacheMap[symbol] = [];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const currentArray = cacheMap[symbol];</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (const raw of rawCandles) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Bybit format: [start, open, high, low, close, volume, turnover]</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const mapped = [</p>
+<p class="p1"><span class="Apple-converted-space">        </span>raw.start.toString(),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>raw.open,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>raw.high,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>raw.low,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>raw.close,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>raw.volume,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>raw.turnover</p>
+<p class="p1"><span class="Apple-converted-space">      </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const index = currentArray.findIndex(c =&gt; c[0] === mapped[0]);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (index !== -1) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Update forming candle</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentArray[index] = mapped;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Append new candle and keep within boundary lengths</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentArray.push(mapped);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const maxLen = interval === '1' ? 65 : 250;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (currentArray.length &gt; maxLen) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>currentArray.shift();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>updateTickerCache(symbol, data) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!G.tickerCache[symbol]) G.tickerCache[symbol] = {};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>Object.assign(G.tickerCache[symbol], data);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// ── PRIVATE WEBSOCKET ORDER SUBMISSION (IOC) ──</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Authorizes and executes rapid execution orders over a persistent private WS</p>
+<p class="p1"><span class="Apple-converted-space">  </span>async executeWSAccessOrder(params, side) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return new Promise(async (resolve, reject) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!G.wsOrderChannel || G.wsOrderChannel.readyState !== WebSocket.OPEN) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Failover to standard REST executor instantly if order websocket is cold</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const restResult = await api('POST', '/v5/order/create', params);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return resolve(restResult);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const reqId = "snip_" + Date.now() + "_" + Math.floor(Math.random()*1000);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const payload = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>op: "order.create",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>reqId: reqId,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>args: [params]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const responseHandler = (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const res = JSON.parse(event.data);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (res.reqId === reqId) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>G.wsOrderChannel.removeEventListener('message', responseHandler);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (res.retCode === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>resolve(res);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reject(new Error(`[Bybit WS Reject] ${res.retMsg}`));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>G.wsOrderChannel.addEventListener('message', responseHandler);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>G.wsOrderChannel.send(JSON.stringify(payload));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 5s hard timeout on WS order confirmation</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>G.wsOrderChannel.removeEventListener('message', responseHandler);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>reject(new Error('WebSocket Order Confirmation Timeout'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}, 5000);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch (err) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>reject(err);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>connectPrivate() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.wsOrderChannel &amp;&amp; (G.wsOrderChannel.readyState === WebSocket.OPEN || G.wsOrderChannel.readyState === WebSocket.CONNECTING)) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('i', '🔐 Activating private WebSocket order routing...');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.wsOrderChannel = new WebSocket(this.privateEndpoint);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.wsOrderChannel.onopen = async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Authenticate Private Connection</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ts = Date.now().toString();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const signature = await sign(S.apiSecret, "GET/auth" + ts + "5000");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>G.wsOrderChannel.send(JSON.stringify({</p>
+<p class="p1"><span class="Apple-converted-space">          </span>op: "auth",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>args: [S.apiKey, "5000", signature]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log('s', '🔐 Private Order Channel Authenticated.');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.wsOrderChannel.onclose = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log('w', '🔐 Private order stream disconnected. Re-initializing...');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setTimeout(() =&gt; this.connectPrivate(), 5000);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch(e) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>log('e', '🔐 Failed to spawn Private WS Stream: ' + e.message);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">let wsClient = null;</p>
+<p class="p2"><br></p>
+<p class="p1">// Re-map REST calls during live scans to pull directly from the low-latency WS Cache</p>
+<p class="p1">async function getCachedKline(symbol, interval, limit = 60) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const cacheMap = interval === '1' ? G.kline1mCache : G.kline15mCache;</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (cacheMap[symbol] &amp;&amp; cacheMap[symbol].length &gt;= limit) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return { result: { list: cacheMap[symbol].slice(-limit).reverse() } };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Cache miss or insufficient depth: fetch via REST and prime memory</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const path = `/v5/market/kline?category=linear&amp;symbol=${symbol}&amp;interval=${interval}&amp;limit=${Math.max(limit, 250)}`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const restData = await pubCached(path);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (restData?.result?.list) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const listCopy = [...restData.result.list].reverse();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>cacheMap[symbol] = listCopy;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return restData;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ── BOOTSTRAP PIPELINE FOR ACTIVE FOCUS PAIRS ──</p>
+<p class="p1">// Subscribes to public streams (ticker + 1m/15m klines)</p>
+<p class="p1">// and fetches initial back-history so technical structures load instantly.</p>
+<p class="p1">async function syncWebSocketSubscriptions(focusList) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!wsClient) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const currentSymbols = new Set(focusList.map(p =&gt; p.symbol));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Prune dead subscriptions</p>
+<p class="p1"><span class="Apple-converted-space">  </span>for (const topic of G.activeSubscriptions) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const symbol = topic.split('.').pop();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!currentSymbols.has(symbol)) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>wsClient.unsubscribe(topic);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Subscribe and bootstrap new ones</p>
+<p class="p1"><span class="Apple-converted-space">  </span>for (const pair of focusList) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sym = pair.symbol;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const kline1Topic = `kline.1.${sym}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const kline15Topic = `kline.15.${sym}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const tickerTopic = `tickers.${sym}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!G.activeSubscriptions.has(kline1Topic)) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>wsClient.subscribe(kline1Topic);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Fast backfill</p>
+<p class="p1"><span class="Apple-converted-space">      </span>getCachedKline(sym, '1', 60).catch(() =&gt; {});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!G.activeSubscriptions.has(kline15Topic)) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>wsClient.subscribe(kline15Topic);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Fast backfill 250 candles to ensure EMA200 works on the 15m immediately</p>
+<p class="p1"><span class="Apple-converted-space">      </span>getCachedKline(sym, '15', 250).catch(() =&gt; {});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!G.activeSubscriptions.has(tickerTopic)) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>wsClient.subscribe(tickerTopic);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================</p>
+<p class="p1">// SECTION F (UPGRADED) — TECHNICAL INDICATORS &amp; MATRIX MATH</p>
+<p class="p1">// ============================================================</p>
+<p class="p2"><br></p>
+<p class="p1">// Top 20% volume ranking filter (Relative Volume)</p>
+<p class="p1">function checkRelativeVolume(vols, curVol) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (vols.length &lt; 20) return false;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const sorted = [...vols].sort((a, b) =&gt; a - b);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const index80Pct = Math.floor(sorted.length * 0.80);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const thresholdVal = sorted[index80Pct];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return curVol &gt;= thresholdVal;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// 1m Fractal Pivot Confirmation &amp; Market Structure Shift (MSS)</p>
+<p class="p1">// Long: Candle[-1].close &gt; Candle[-2].high, where Candle[-2].high is a local fractal peak</p>
+<p class="p1">// Short: Candle[-1].close &lt; Candle[-2].low, where Candle[-2].low is a local fractal valley</p>
+<p class="p1">function detect1MMSS(k1c, direction) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (k1c.length &lt; 6) return { confirmed: false, level: 0 };</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Index alignments on reversed array (list[0] = oldest, list[len-1] = current forming)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const lastIndex = k1c.length - 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c1 = k1c[lastIndex - 1]; // Candle[-1] (completed)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c2 = k1c[lastIndex - 2]; // Candle[-2]</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c3 = k1c[lastIndex - 3]; // Candle[-3]</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c1Close = parseFloat(c1[4]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c2High<span class="Apple-converted-space">  </span>= parseFloat(c2[2]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c2Low <span class="Apple-converted-space">  </span>= parseFloat(c2[3]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c1High<span class="Apple-converted-space">  </span>= parseFloat(c1[2]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c3High<span class="Apple-converted-space">  </span>= parseFloat(c3[2]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c1Low <span class="Apple-converted-space">  </span>= parseFloat(c1[3]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const c3Low <span class="Apple-converted-space">  </span>= parseFloat(c3[3]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (direction === 'LONG') {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Validate Candle[-2] is a fractal high</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const isFractalHigh = (c2High &gt; c1High) &amp;&amp; (c2High &gt; c3High);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// MSS: Candle[-1].close closes above the Fractal High</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const breakConfirmed = c1Close &gt; c2High;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return { confirmed: isFractalHigh &amp;&amp; breakConfirmed, level: c2High };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Validate Candle[-2] is a fractal low</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const isFractalLow = (c2Low &lt; c1Low) &amp;&amp; (c2Low &lt; c3Low);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// MSS: Candle[-1].close closes below the Fractal Low</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const breakConfirmed = c1Close &lt; c2Low;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return { confirmed: isFractalLow &amp;&amp; breakConfirmed, level: c2Low };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================</p>
+<p class="p1">// SECTION N (UPGRADED) — SNIPER SCANNING &amp; SELECTION MATRIX</p>
+<p class="p1">// ============================================================</p>
+<p class="p2"><br></p>
+<p class="p1">async function analyzeSymbolStructural(pair) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (pair &amp;&amp; BLACKLIST_SYMBOLS.includes(pair.symbol)) return null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sess = getSessionInfo();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (sess.dangerous) return null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (S.paused) return null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (S.volatilityBreaker) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Load data from the ultra-low latency WebSocket Cache</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const [r15, r1, rOI] = await Promise.all([</p>
+<p class="p1"><span class="Apple-converted-space">      </span>getCachedKline(pair.symbol, '15', 250), // Needs 250 elements for reliable EMA200</p>
+<p class="p1"><span class="Apple-converted-space">      </span>getCachedKline(pair.symbol, '1', 60),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pub(`/v5/market/open-interest?category=linear&amp;symbol=${pair.symbol}&amp;intervalTime=5min&amp;limit=5`),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const k15c = (r15.result?.list || []).slice().reverse();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const k1c<span class="Apple-converted-space">  </span>= (r1.result?.list || []).slice().reverse();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (k15c.length &lt; 205 || k1c.length &lt; 25) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const price = parseFloat(k1c[k1c.length - 1][4]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!price || isNaN(price) || price &lt;= 0) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const closes15 = k15c.map(k =&gt; parseFloat(k[4]));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const closes1<span class="Apple-converted-space">  </span>= k1c.map(k =&gt; parseFloat(k[4]));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const vols1<span class="Apple-converted-space">    </span>= k1c.map(k =&gt; parseFloat(k[5]));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// FILTER 1 — 15m Trend Bias Gate (EMA 200)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ema200on15 = calcEMA(closes15, 200);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let direction = 'NEUTRAL';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (price &gt; ema200on15) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>direction = 'LONG';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (price &lt; ema200on15) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>direction = 'SHORT';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return null; // Trend is completely flat / unresolvable</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// FILTER 2 — 1m Liquidity Sweep (lookback=5)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Compare last closed candle (k1c[len-2]) against previous 5 candles (k1c[len-7] to k1c[len-3])</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lastClosedCandle = k1c[k1c.length - 2];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lcLow = parseFloat(lastClosedCandle[3]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lcHigh = parseFloat(lastClosedCandle[2]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const referenceWindow = k1c.slice(-7, -2);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let swept = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (direction === 'LONG') {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const minLow = Math.min(...referenceWindow.map(k =&gt; parseFloat(k[3])));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (lcLow &lt; minLow) swept = true;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const maxHigh = Math.max(...referenceWindow.map(k =&gt; parseFloat(k[2])));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (lcHigh &gt; maxHigh) swept = true;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!swept) return null; // No sweep detected = fail waterfall</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// FILTER 3 — 1m Market Structure Shift (MSS Pivot Confirmation)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const mssCheck = detect1MMSS(k1c, direction);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!mssCheck.confirmed) return null; // No break of fractal level = fail waterfall</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// FILTER 4 — SYSTEM EXECUTION FILTERS (ATR &amp; RVOL)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ATR Filter: Current ATR(14) &gt; 80% of 20-period ATR average</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const atrNow = calcATR(k1c.slice(-15), 14);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const atrHistory = [];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (let i = 20; i &gt; 0; i--) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>atrHistory.push(calcATR(k1c.slice(-15 - i, -i), 14));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const avgAtrHistory = atrHistory.reduce((a, b) =&gt; a + b, 0) / 20;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (atrNow &lt;= avgAtrHistory * 0.80) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return null; // Volatility compression check failed</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// RVOL Filter: Current candle volume must be in top 20% of last 20 candles</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const currentVol = parseFloat(lastClosedCandle[5]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const recentVols = vols1.slice(-21, -1); // last 20 completed volumes</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!checkRelativeVolume(recentVols, currentVol)) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return null; // Volume participation check failed</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// STRENGTH SCORING SYSTEM (Minimum Threshold &gt;= 65/100)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cl_o = parseFloat(lastClosedCandle[1]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cl_h = parseFloat(lastClosedCandle[2]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cl_l = parseFloat(lastClosedCandle[3]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cl_c = parseFloat(lastClosedCandle[4]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cl_v = parseFloat(lastClosedCandle[5]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const range = cl_h - cl_l;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (range === 0) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Body Strength (40%)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const bodyStrScore = (Math.abs(cl_c - cl_o) / range) * 40;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Wick Rejection (30%)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lowerWick = Math.min(cl_o, cl_c) - cl_l;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const upperWick = cl_h - Math.max(cl_o, cl_c);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const wickRejScore = ((direction === 'LONG' ? lowerWick : upperWick) / range) * 30;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Volume Expansion (20%)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const avgVol20 = recentVols.reduce((a, b) =&gt; a + b, 0) / 20;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const volExpansionRatio = avgVol20 &gt; 0 ? cl_v / avgVol20 : 1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Map ratio linearly: 1.0x = 10 pts, 2.0x+ = 20 pts</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const volExpScore = Math.min(20, Math.max(0, (volExpansionRatio - 1) * 10 + 10));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Close Location (10%)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const closeLocScore = (direction === 'LONG'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>? ((cl_c - cl_l) / range)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>: ((cl_h - cl_c) / range)) * 10;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const score = Math.round(bodyStrScore + wickRejScore + volExpScore + closeLocScore);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (score &lt; 65) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return null; // Failed quality threshold</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const grade = deriveGrade(score);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Calculate static SL parameters</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sl4h_ = calc4HStructuralSL(k15c, k4hc, direction, price);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!sl4h_ || !checkFeeCoverage(sl4h_.slPct * 1.2)) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const spreadCheck = await checkSpread(pair.symbol, price);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!spreadCheck.ok) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Setup classification name</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const setupType = `LIQ_SNIPER_${direction}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Return the packaged signal payload</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>symbol: pair.symbol,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>direction,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>signal: direction,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>score,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grade,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setupType,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>entryPath: 'SNIPER_WS',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>isApexReversal: false,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>price,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>atr15,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>atr5,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>atr1: atrNow,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rsi15,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rsi5: calcRSI(closes5, 14),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rsi1,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>macd5,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>stoch5,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>bias5,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>bias15,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>bias1h,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>bias4h,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>isCounterTrend: false,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>isTrendAligned: true,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>sl4h: sl4h_,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>spreadCheck,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>oiRising: false,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>oiFalling: false,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>volSig5: { ratio: volExpansionRatio },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>volSig1: { ratio: volExpansionRatio },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>candle15sig: calcCandles(k15c.slice(-3)),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>candle5sig: calcCandles(k5c.slice(-3)),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>vwap5: calcVWAP(k5c),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>vwap1: calcVWAP(k1c),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ema9on1: calcEMA(closes1.slice(-20), 9),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ema21on5: calcEMA(closes5.slice(-30), 21),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rawScores: {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>zone15: bodyStrScore / 40,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>bias15: closeLocScore / 10,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>candle15: wickRejScore / 30,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mss5: volExpScore / 20,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sweep5: swept ? 1.0 : 0,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>displacement: bodyStrScore / 40,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>vwap5: 0.5,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>volume: volExpScore / 20,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>momentum: closeLocScore / 10,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>atr: atrNow &gt; avgAtrHistory ? 1.0 : 0.5,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btc: 0.5,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>oi: 0.5</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pair,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>k15: k15c,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>k5: k5c,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>k1: k1c,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>k1h: k4hc,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>k4h: k15c</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('e', `analyzeSymbol error ${pair?.symbol}: ${e.message}`);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return null;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================</p>
+<p class="p1">// SECTION O (UPGRADED) — TWO-TIER RUNTIME ENGINE</p>
+<p class="p1">// ============================================================</p>
+<p class="p2"><br></p>
+<p class="p1">// TIER-1 SCANNER: Runs every 30s to update the focus universe</p>
+<p class="p1">async function runTier1Scan() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!S.running || !S.tradableUniverse.length) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('scanTierBadge').textContent = 'TIER-1 RANKING';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('scanTierBadge').className = 'tier-pill tier1';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Filter the full universe down to liquid, active perpetual assets</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const activeUniverse = S.tradableUniverse.filter(p =&gt; p.volume &gt; 10000000 &amp;&amp; p.oi &gt; 3000000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ranked = await tier1MacroScan(activeUniverse);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Select top 20 pairs for real-time WebSocket coverage</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const topN = 20;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>S.focusPairs = ranked.slice(0, topN).filter(p =&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>!isCoolingDown(p.symbol) &amp;&amp; !S.openPositions.find(pos =&gt; pos.symbol === p.symbol)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Sync WebSockets for the active focus pairs</p>
+<p class="p1"><span class="Apple-converted-space">    </span>await syncWebSocketSubscriptions(S.focusPairs);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('universeCount').textContent = S.focusPairs.length;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('universeFill').style.width = Math.min(100, (S.focusPairs.length / topN) * 100) + '%';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('i', `📡 Tier-1 scan complete: established ${S.focusPairs.length} focus pairs.`);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('scanTierBadge').textContent = 'TIER-2 WS';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('scanTierBadge').className = 'tier-pill tier2';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('e', 'Tier-1 scan error: ' + e.message);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// TIER-2 SCANNER: Runs every 1s over active WebSocket caches</p>
+<p class="p1">async function runTier2Scan() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!S.running) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (_tier2Running) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>_tier2Running = true;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const hasSlot = hasOpenSlot();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!hasSlot || !S.marketSafe || S.paused || !S.focusPairs.length) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('statStatus').textContent = S.paused ? 'PAUSED' : !hasSlot ? 'IN TRADE' : 'STANDBY';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>_tier2Running = false;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('statStatus').textContent = 'SCANNING';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('scanTierBadge').textContent = 'TIER-2 DEEP';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('scanTierBadge').className = 'tier-pill tier2';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const candidates = S.focusPairs.filter(p =&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>!isCoolingDown(p.symbol) &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>!S.openPositions.find(pos =&gt; pos.symbol === p.symbol) &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>!_pendingExecutions.has(p.symbol) &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>!_inFlightOrders.has(p.symbol)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const signals = [];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (const p of candidates) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!S.running) break;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!hasOpenSlot()) break;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const res = await analyzeSymbolStructural(p);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (res) signals.push(res);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>signals.sort((a, b) =&gt; b.score - a.score);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>updateSignalGrid(signals.slice(0, 12));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (signals.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateScoreDisplay(signals[0]);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateIndicatorGrid(signals[0]);</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (const sig of signals) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!S.running) break;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!hasOpenSlot()) break;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (_pendingExecutions.has(sig.symbol) || S.openPositions.find(p =&gt; p.symbol === sig.symbol) || _inFlightOrders.has(sig.symbol)) continue;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Passed all filters — execute trade immediately</p>
+<p class="p1"><span class="Apple-converted-space">        </span>await openStructuralTrade(sig);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('e', 'Tier-2 scan error: ' + e.message);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>_tier2Running = false;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================</p>
+<p class="p1">// SECTION R (UPGRADED) — LOW-LATENCY ORDER EXECUTION</p>
+<p class="p1">// ============================================================</p>
+<p class="p1">async function openStructuralTrade(result) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!S.running) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (S.paused) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (isCoolingDown(result.symbol)) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (_inFlightOrders.has(result.symbol)) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (S.openPositions.find(p =&gt; p.symbol === result.symbol)) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>_inFlightOrders.add(result.symbol);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!hasOpenSlot()) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>playAudio('setup');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('s', `✨ SNIPER ALERT: ${result.symbol} ${result.direction} (${result.score}/100) — Routing order...`);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const unlock = await acquireExecLock();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const livePositions = await getPositions();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const liveSyms = livePositions.map(p =&gt; p.symbol);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>S.openPositions = S.openPositions.filter(p =&gt; liveSyms.includes(p.symbol) || p.status !== 'open');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (hardPositionCount() &gt;= MAX_POSITIONS) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>_pendingExecutions.add(result.symbol);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bal = await getBalance();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (bal &lt; 1) return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>S.balance = bal;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const availBal = await getAvailableBalance();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const entryPrice = result.price;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const finalSL = result.sl4h;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const finalSlPrice = finalSL.slPrice;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { tp1Price } = calcVolatilityTP(result.direction, entryPrice);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const finalLeverage = calcDynamicLeverage(finalSL.slPct, result.pair.maxLeverage);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Setup leverage</p>
+<p class="p1"><span class="Apple-converted-space">        </span>await api('POST', '/v5/position/set-leverage', {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>category: 'linear', symbol: result.symbol,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>buyLeverage: finalLeverage.toString(), sellLeverage: finalLeverage.toString()</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const orderCalc = calcOrder(availBal, entryPrice, result.pair.minQty, result.pair.qtyStep, finalLeverage, 1.0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!orderCalc.valid) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const notional = orderCalc.qty * entryPrice;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (notional &lt; 5) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const tickSize = result.pair.tickSize || 0.0001;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const tickDec = stepDecimals(tickSize);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const fp = (n) =&gt; (Math.round(n / tickSize) * tickSize).toFixed(tickDec);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const orderParams = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>category: 'linear', symbol: result.symbol,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>side: result.direction === 'LONG' ? 'Buy' : 'Sell',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>orderType: 'Limit', qty: orderCalc.qty.toString(),</p>
+<p class="p1"><span class="Apple-converted-space">          </span>price: fp(entryPrice),</p>
+<p class="p1"><span class="Apple-converted-space">          </span>stopLoss: fp(finalSlPrice),</p>
+<p class="p1"><span class="Apple-converted-space">          </span>slTriggerBy: 'LastPrice',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>timeInForce: 'IOC', // Immediate or Cancel (Sniper Spec)</p>
+<p class="p1"><span class="Apple-converted-space">          </span>reduceOnly: false, positionIdx: 0</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Submit via low-latency WebSocket order interface</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let res;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>res = await wsClient.executeWSAccessOrder(orderParams, result.direction);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch(e) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>log('w', `🔐 Private WS Order failed (${e.message}) — Falling back to REST`);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>res = await api('POST', '/v5/order/create', orderParams);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!res || res.retCode !== 0) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>log('e', `❌ Order execution rejected: ${res?.retMsg || 'Unknown error'}`);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const orderId = res.result?.orderId;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Verify Fill State</p>
+<p class="p1"><span class="Apple-converted-space">        </span>await sleep(500);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const posCheck = await getPositions();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const lp = posCheck.find(p =&gt; p.symbol === result.symbol);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!lp) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>log('w', `❌ Order unfilled or cancelled (IOC execution) — Re-opening slot`);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const actualEntry = parseFloat(lp.avgPrice || entryPrice);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setCooldown(result.symbol);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const t = {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>id: orderId, symbol: result.symbol, side: result.direction,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>entryPrice: actualEntry, qty: orderCalc.qty, leverage: finalLeverage,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>sl: finalSlPrice, tp: tp1Price, tp1Price: tp1Price, tp1Pct: 0.006,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>slPct: finalSL.slPct, slMethod: '5M-1H-GAP-25PCT',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>openTime: Date.now(), status: 'open', pnl: 0, livePnl: 0,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>margin: orderCalc.margin, score: result.score, grade: result.grade,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>setupType: result.setupType, entryScore: result.score,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>tp1Hit: false, partialClosed1: false, runnerActive: false, trailStop: 0,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>breakeven: false, staleCheckTime: Date.now(), staleWarned: false,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>liqPrice: parseFloat(lp.liqPrice || 0), currentPrice: actualEntry, atr5: result.atr5</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>S.trades.unshift(t);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>S.openPositions.push(t);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>saveState();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Place resting limit TP</p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const tpSide = result.direction === 'LONG' ? 'Sell' : 'Buy';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const tpRes = await api('POST', '/v5/order/create', {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>category: 'linear', symbol: result.symbol, side: tpSide,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>orderType: 'Limit', qty: orderCalc.qty.toString(), price: fp(tp1Price),</p>
+<p class="p1"><span class="Apple-converted-space">            </span>timeInForce: 'GTC', reduceOnly: true, positionIdx: 0</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (tpRes.retCode === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>t.tpOrderId = tpRes.result?.orderId || null;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>log('i', `🎯 Rested limit TP placed for ${result.symbol} @ ${fp(tp1Price)}`);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch(e) {}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateTradeLog(); updateStats(); updateLivePanel();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log('s', `✅ EXECUTION FILLED: ${result.symbol} ${result.direction} @ ${actualEntry.toFixed(6)} | SL: ${finalSlPrice.toFixed(6)}`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>playAudio('entry');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>_pendingExecutions.delete(result.symbol);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateStats();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>unlock();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} catch(e) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('e', `${result.symbol} Execution Error: ` + e.message);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>_inFlightOrders.delete(result.symbol);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================</p>
+<p class="p1">// SECTION S (UPGRADED) — POSITION MONITORING &amp; VOL-CLIMAX SL</p>
+<p class="p1">// ============================================================</p>
+<p class="p1">async function monitorPositions() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!S.running) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const live = await getPositions();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Reconcile and process active trades</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const liveSyms = live.map(p =&gt; p.symbol);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (let i = S.openPositions.length - 1; i &gt;= 0; i--) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pos = S.openPositions[i];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const lp = live.find(p =&gt; p.symbol === pos.symbol);</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!lp) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Position closed externally</p>
+<p class="p1"><span class="Apple-converted-space">        </span>try { await api('POST', '/v5/order/cancel-all', { category: 'linear', symbol: pos.symbol }); } catch(e) {}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pnl = await getClosedPnl(pos.symbol, pos.openTime);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pos.pnl = pnl;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pos.status = pnl &gt;= 0 ? 'closed' : 'stopped';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>S.sessionPnl += pnl;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>S.totalPnl += pnl;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (pnl &gt;= 0) { S.wins++; } else { S.losses++; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>S.openPositions.splice(i, 1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log(pnl &gt;= 0 ? 's' : 'w', `${pnl &gt;= 0 ? '✅' : '❌'} ${pos.symbol} closed. P&amp;L: ${pnl.toFixed(4)} USDT`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (pnl &lt; 0) playAudio('sl'); else playAudio('tp');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateTradeLog(); updateStats(); updateLivePanel();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>continue;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Live metrics update</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const curPrice = parseFloat(lp.markPrice || lp.avgPrice || pos.entryPrice);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pos.livePnl = parseFloat(lp.unrealisedPnl || 0);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pos.currentPrice = curPrice;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// VOLATILITY-CLIMAX BREAK-EVEN TRAIL TRIGGER</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// If profit target is 50% reached AND 1m volume &gt; 2x average volume,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// move Stop Loss to Break-Even (entryPrice)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// ─────────────────────────────────────────────────────────────</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!pos.breakeven) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const tpDistance = Math.abs(pos.tp - pos.entryPrice);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const currentProfit = Math.abs(curPrice - pos.entryPrice);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const progressPct = currentProfit / tpDistance;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (progressPct &gt;= 0.50) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Verify 1m Volume condition (&gt; 2x average volume of last 20 candles)</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const k1Data = G.kline1mCache[pos.symbol];</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (k1Data &amp;&amp; k1Data.length &gt;= 21) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const vols = k1Data.slice(-21, -1).map(k =&gt; parseFloat(k[5]));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const avgVol20 = vols.reduce((a, b) =&gt; a + b, 0) / 20;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const currentVol = parseFloat(k1Data[k1Data.length - 1][5]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (currentVol &gt; avgVol20 * 2.0) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>// Volatility-Climax detected! Move Stop Loss to Break-even</p>
+<p class="p1"><span class="Apple-converted-space">              </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const step = pos.pair?.tickSize || 0.0001;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dec = stepDecimals(step);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const bePrice = pos.entryPrice.toFixed(dec);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const res = await api('POST', '/v5/order/amend', {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>category: 'linear',</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>symbol: pos.symbol,</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>orderId: pos.id, // Amends the active stop loss order associated with position</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>stopLoss: bePrice</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (res.retCode === 0 || res.retCode === 110043) {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>pos.breakeven = true;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>pos.sl = pos.entryPrice;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>log('s', `🔥 [VOL-CLIMAX] ${pos.symbol} - Profit target 50% hit with volume spike! SL moved to Breakeven (${bePrice})`);</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>log('e', `[VOL-CLIMAX ERROR] Failed to amend SL for ${pos.symbol}: ${e.message}`);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>updateLivePanel();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('e', 'monitorPositions error: ' + e.message);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ============================================================</p>
+<p class="p1">// SECTION P (UPGRADED) — PIPELINE INTERFACE LAYER</p>
+<p class="p1">// ============================================================</p>
+<p class="p1">async function initWebSocketEngine() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const net = document.getElementById('network').value;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>wsClient = new BybitWebSocketClient(net);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>wsClient.connect();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>wsClient.connectPrivate();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function updateLivePanel() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const panel = document.getElementById('livePanel');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const grid = document.getElementById('positionsGrid');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const badge = document.getElementById('lpBadge');</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (S.openPositions.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>panel.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>panel.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>badge.textContent = `${S.openPositions.length} ACTIVE POSITION(s)`;</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>grid.innerHTML = S.openPositions.map(pos =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pnl = pos.livePnl || 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pnlPct = pos.margin &gt; 0 ? (pnl / pos.margin) * 100 : 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const age = ((Date.now() - pos.openTime) / 60000).toFixed(0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return `&lt;div class="pos-card ${pos.side === 'LONG' ? 'long-card' : 'short-card'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="pc-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-label"&gt;Pair&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-val pc-coin"&gt;${pos.symbol.replace('USDT', '')}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="font-family:Share Tech Mono;font-size:.46rem;color:var(--text2)"&gt;${pos.side} ${pos.leverage}x&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="pc-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-label"&gt;Unrealized PnL&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-val pc-pnl ${pnl &gt;= 0 ? 'pos' : 'neg'}"&gt;$${pnl.toFixed(4)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="font-family:Share Tech Mono;font-size:.44rem;color:var(--text2)"&gt;${pnlPct.toFixed(2)}%&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="pc-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-label"&gt;Entry&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-val pc-sm"&gt;${pos.entryPrice.toFixed(4)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="pc-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-label"&gt;Current&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-val pc-sm pc-cyan"&gt;${(pos.currentPrice || pos.entryPrice).toFixed(4)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="pc-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-label"&gt;Stop Loss&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-val pc-sm pc-red"&gt;${pos.sl.toFixed(4)} ${pos.breakeven ? '(BE)' : ''}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="pc-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-label"&gt;Take Profit&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-val pc-sm pc-green"&gt;${pos.tp.toFixed(4)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="pc-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-label"&gt;Age&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pc-val pc-sm"&gt;${age}m&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="pc-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="pc-close-btn" onclick="askClose('${pos.symbol}')"&gt;⛔ CLOSE&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}).join('');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Interface integrations</p>
+<p class="p1">function connectAPI() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const key = document.getElementById('apiKey').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const secret = document.getElementById('apiSecret').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const net = document.getElementById('network').value;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!key || !secret) { alert('Enter both API Key and Secret.'); return; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>S.apiKey = key; S.apiSecret = secret; S.baseUrl = URLS[net];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const btn = document.getElementById('connectBtn');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>btn.disabled = true; btn.textContent = 'Connecting...';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>log('i', 'Connecting to Bybit ' + net + '...');</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>getBalance().then(bal =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (bal === null || isNaN(bal)) throw new Error('Invalid credentials');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>S.balance = bal;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>S.connected = true;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>S.startBalance = parseFloat(document.getElementById('startCapital').value) || bal;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('connDot').className = 'dot live';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('connLabel').textContent = 'CONNECTED';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('balPill').classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('balPillVal').textContent = bal.toFixed(4) + ' USDT';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('startBtn').classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('startBtn').disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>btn.classList.add('hidden');</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>loadState();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>initWebSocketEngine(); // Initialize low-latency system</p>
+<p class="p1"><span class="Apple-converted-space">    </span>updateRegime().then(buildUniverse).then(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateStats();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateTradeLog();</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Start Tier-1 loop (Every 30s)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.macroScanInterval = setInterval(runTier1Scan, 30000);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>runTier1Scan();</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Start Tier-2 loop (Every 1s)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>G.deepScanInterval = setInterval(runTier2Scan, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}).catch(e =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>log('e', 'Connection failed: ' + e.message);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>btn.disabled = false; btn.textContent = '⚡ Connect &amp; Verify';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function startBot() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>S.running = true;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('startBtn').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('stopBtn').classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('botDot').className = 'dot running';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('botLabel').textContent = 'BOT RUNNING';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>log('s', '▶ Engine started. Liquidity Sniper is active on 1M / 15M WebSocket streams.');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>botLoop();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function stopBot() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>S.running = false;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('stopBtn').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('startBtn').classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('botDot').className = 'dot';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('botLabel').textContent = 'BOT IDLE';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function clearAll() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (S.running) { alert('Stop the bot first.'); return; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (confirm('Reset state? This will clear connections.')) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.macroScanInterval) clearInterval(G.macroScanInterval);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (G.deepScanInterval) clearInterval(G.deepScanInterval);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>localStorage.removeItem(STATE_KEY);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.location.reload();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
